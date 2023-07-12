@@ -1,3 +1,3 @@
-import {Browser} from './src/core/browser';
+import {BrowserWithPlugins} from './src/PluginApp';
 
-export default Browser;
+export default BrowserWithPlugins;

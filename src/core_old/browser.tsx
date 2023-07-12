@@ -30,8 +30,6 @@ export function Browser() {
     [state, dispatch],
   );
 
-  console.log('STATE', state);
-
   return (
     <>
       {built.headerComponent.map((Component: any) => (
