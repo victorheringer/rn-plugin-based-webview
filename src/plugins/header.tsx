@@ -21,7 +21,6 @@ function HeaderPluginComponent() {
           justifyContent: 'center',
         }}
         onPress={() => {
-          console.log('set url');
           dispatch({type: 'SET_URL', payload: url});
         }}>
         <Text style={{alignSelf: 'center'}}>Go</Text>

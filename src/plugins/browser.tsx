@@ -4,11 +4,13 @@ import {WebView} from 'react-native-webview';
 import {PluginsContext} from '../lib/PluginsContext';
 
 function BrowserPluginComponent() {
-  const {state, ref, dispatch, middlewares} = useContext(PluginsContext);
+  const {state, refs, dispatch, middlewares} = useContext(PluginsContext);
+
+  console.log(state);
 
   return (
     <WebView
-      ref={ref}
+      ref={el => (refs.current.browser = el)}
       source={{uri: state.browser.url}}
       style={{flexGrow: 1}}
     />
@@ -28,6 +30,7 @@ const browserInitialState = {
 const propToMiddlewareMap = {
   browser: {
     onLoadEnd: 'ON_LOAD_END',
+    onLoadStart: 'ON_LOAD_START',
   },
 };
 
@@ -92,19 +95,12 @@ const browserEffects = {
   },
 };
 
-const browserMiddleware = {
-  ON_LOAD_END: [
-    ({state, action, dispatch}) =>
-      params => {
-        console.log(state);
-      },
-  ],
-  ON_LOAD_START: [],
-};
+const browserRef = {browser: null};
 
 export const BrowserPlugin = {
   reducers: browserReducer,
   state: browserInitialState,
   effects: browserEffects,
   Component: BrowserPluginComponent,
+  refs: browserRef,
 };

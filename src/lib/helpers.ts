@@ -18,4 +18,10 @@ export function joinEffects(effects: any) {
   }, {});
 }
 
+export function joinRefs(refs: any) {
+  return refs.reduce((acc: any, ref: any) => {
+    return {...acc, ...ref};
+  }, {});
+}
+
 export function joinMiddleware(middlewares: any, map: any) {}
